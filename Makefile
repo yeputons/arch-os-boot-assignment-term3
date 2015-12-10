@@ -8,6 +8,7 @@ TARGET_MBR=mbr
 
 CFLAGS=-nostdlib -nostdinc -ffreestanding -m32 -std=c99
 ASFLAGS=-m32
+LDFLAGS=-nostdlib
 QEMU=qemu-system-i386
 
 all: $(TARGET_MB) $(TARGET_MBR)
@@ -19,10 +20,10 @@ run-mbr: $(TARGET_MBR)
 	$(QEMU) -hda $< -vnc localhost:0
 
 $(TARGET_MB): $(SOURCES_MB:%=%.o)
-	ld -Tmultiboot.ld -o $@ $^
+	ld $(LDFLAGS) -Tmultiboot.ld -o $@ $^
 
 $(TARGET_MBR): $(SOURCES_MBR:%=%.o)
-	ld -Tmbr.ld -o $@ $^
+	ld $(LDFLAGS) -Tmbr.ld -o $@ $^
 
 %.o: %.c
 	gcc -o $@ -c $(CFLAGS) $<
