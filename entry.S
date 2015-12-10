@@ -21,6 +21,4 @@ loop:
     hlt
     jmp loop
 
-.data
 .comm stack, STACK_SIZE
-
