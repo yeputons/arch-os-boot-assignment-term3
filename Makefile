@@ -19,11 +19,11 @@ run-multiboot: $(TARGET_MB)
 run-mbr: $(TARGET_MBR)
 	$(QEMU) -hda $< -vnc localhost:0
 
-$(TARGET_MB): $(SOURCES_MB:%=%.o)
-	ld $(LDFLAGS) -Tmultiboot.ld -o $@ $^
+$(TARGET_MB): $(SOURCES_MB:%=%.o) multiboot.ld
+	ld $(LDFLAGS) -Tmultiboot.ld -o $@ $(SOURCES_MB:%=%.o)
 
-$(TARGET_MBR): $(SOURCES_MBR:%=%.o)
-	ld $(LDFLAGS) -Tmbr.ld -o $@ $^
+$(TARGET_MBR): $(SOURCES_MBR:%=%.o) mbr.ld
+	ld $(LDFLAGS) -Tmbr.ld -o $@ $(SOURCES_MBR:%=%.o)
 
 %.o: %.c
 	gcc -o $@ -c $(CFLAGS) $<
