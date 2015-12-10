@@ -8,10 +8,7 @@ __attribute__((section(".header"))) = {
     MB_FLAGS,
     -MB_MAGIC - MB_FLAGS,
     0, 0, 0, 0, 0, // header info, unused
-    '1', // mode_type, EGA-standard
-    VIDEO_WIDTH,
-    VIDEO_HEIGHT,
-    0, // depth of video, no preference
+    0, 0, 0, 0 // video info, unused
 };
 
 void main(uint32_t magic, uint32_t mb_info) {
