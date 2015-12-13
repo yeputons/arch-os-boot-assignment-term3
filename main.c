@@ -3,6 +3,7 @@
 #include "video.h"
 
 static const uint32_t MULTIBOOT_HEADER[]
+__attribute__((aligned(4)))
 __attribute__((section(".header"))) = {
     MB_MAGIC,
     MB_FLAGS,
