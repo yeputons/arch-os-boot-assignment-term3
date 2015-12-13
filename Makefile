@@ -8,7 +8,7 @@ TARGET_MBR=mbr
 
 CFLAGS=-nostdlib -nostdinc -ffreestanding -m32 -std=c99
 ASFLAGS=-m32
-LDFLAGS=-nostdlib
+LDFLAGS=-nostdlib --strip-all --nmagic  # --nmagic disables 4k-alignment of section starts in the output file (its other effects are irrelevant here)
 QEMU=qemu-system-i386
 QEMUFLAGS=
 
