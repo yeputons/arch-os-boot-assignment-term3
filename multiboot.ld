@@ -4,8 +4,8 @@ ENTRY(entry_point)
 
 SECTIONS
 {
-    .header : { .*(.header) }
     . = 1M;
+    .header : { .*(.header) }
     .text : { *(.entry) *(.text) }
     .data : { *(.data) }
     .rodata : { *(.rodata) }
