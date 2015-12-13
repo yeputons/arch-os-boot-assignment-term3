@@ -10,7 +10,7 @@ CFLAGS=-nostdlib -nostdinc -ffreestanding -m32 -std=c99
 ASFLAGS=-m32
 LDFLAGS=-nostdlib
 QEMU=qemu-system-i386
-QEMUFLAGS=-vnc localhost:0
+QEMUFLAGS=
 
 all: $(TARGET_MB) $(TARGET_MBR)
 
