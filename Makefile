@@ -10,14 +10,15 @@ CFLAGS=-nostdlib -nostdinc -ffreestanding -m32 -std=c99
 ASFLAGS=-m32
 LDFLAGS=-nostdlib
 QEMU=qemu-system-i386
+QEMUFLAGS=-vnc localhost:0
 
 all: $(TARGET_MB) $(TARGET_MBR)
 
 run-multiboot: $(TARGET_MB)
-	$(QEMU) -kernel $< -vnc localhost:0
+	$(QEMU) -kernel $< $(QEMUFLAGS)
 
 run-mbr: $(TARGET_MBR)
-	$(QEMU) -hda $< -vnc localhost:0
+	$(QEMU) -hda $< $(QEMUFLAGS)
 
 $(TARGET_MB): $(SOURCES_MB:%=%.o) multiboot.ld
 	ld $(LDFLAGS) -Tmultiboot.ld -o $@ $(SOURCES_MB:%=%.o)
